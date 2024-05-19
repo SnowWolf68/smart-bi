@@ -1,36 +1,37 @@
 
 ¤
-java:S1488]"bImmediately return this expression instead of assigning it to the temporary variable "pageResult".(Ğò„H8Ã€Ï‰ù1J$86fef1d8-bb39-4634-b6e9-2a11898eef2a
+java:S1488a"bImmediately return this expression instead of assigning it to the temporary variable "pageResult".(Ğò„H8Õ³¢Šù1J$59aa623f-f498-4077-84ee-80af7d9726f4
 ¨
-java:S1488p"`Immediately return this expression instead of assigning it to the temporary variable "aiResult".(“®’İúÿÿÿÿ8Ä€Ï‰ù1J$789008f0-da15-4c84-98ac-b28775b1c63b
-	java:S116'"]Rename this field "GEN_CHART_EXECUTOR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( äß$8Í€Ï‰ù1J$e3088a40-c6b3-4384-b61a-23230d281b8b
+java:S1488t"`Immediately return this expression instead of assigning it to the temporary variable "aiResult".(“®’İúÿÿÿÿ8Õ³¢Šù1J$75358491-6351-4c8b-955d-89a966c4ddc1
+	java:S116)"]Rename this field "GEN_CHART_EXECUTOR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( äß$8Ş³¢Šù1J$bcfa9ddd-481c-4edd-af5c-ae23e6774dec
 —
-java:S3252;"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(ï–åˆùÿÿÿÿ8Ò€Ï‰ù1J$7883dca0-227f-4e6b-8669-ec08e680bf32
+java:S3252?"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(ï–åˆùÿÿÿÿ8â³¢Šù1J$317938f2-d91d-411b-bfff-3bd92deeb3bb
 ’
-java:S3252<"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(êÆ¸Ã8Ò€Ï‰ù1J$a0205a44-1a5b-404d-8a94-9b527b85fffe
+java:S3252@"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(êÆ¸Ã8â³¢Šù1J$8c22a422-ccd1-4376-b7e1-888009b695a2
 —
-java:S3252="OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(•ÉØ¡ÿÿÿÿÿ8Ó€Ï‰ù1J$2b10652e-7584-4bb3-9425-4605b31dacb5
+java:S3252A"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(•ÉØ¡ÿÿÿÿÿ8â³¢Šù1J$6bd54afe-f7fd-4204-971a-52fbf2f8e15a
 —
-java:S3252>"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(¾ÄŸöıÿÿÿÿ8Ó€Ï‰ù1J$48881907-d679-4d90-bb18-3fa802bf2bd6
+java:S3252B"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(¾ÄŸöıÿÿÿÿ8â³¢Šù1J$5a3e8432-7f29-4c1f-8446-66d16fa9ed53
 —
-java:S3252Y"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(îâÀ¸üÿÿÿÿ8Õ€Ï‰ù1J$6e5601ba-d4ce-4ad8-b97c-0127c559524b
+java:S3252]"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(îâÀ¸üÿÿÿÿ8ä³¢Šù1J$deed3e39-1904-4595-a4af-275b5922a593
 —
-java:S3252Z"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(É¤˜Ôüÿÿÿÿ8Õ€Ï‰ù1J$55a561e9-49cb-420c-92ab-fa2e72330a02
+java:S3252^"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(É¤˜Ôüÿÿÿÿ8ä³¢Šù1J$bea4d69c-2620-4bd5-a47e-e9928138ba29
 ’
-java:S3252["OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(şì¿’8Õ€Ï‰ù1J$ef199cd5-9706-4fd2-9c9f-7fe99192bd8f
+java:S3252_"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(şì¿’8å³¢Šù1J$195e5823-21b8-43a9-a350-ef180fa1528b
 
-java:S1854e"=Remove this useless assignment to local variable "chartType".(¾Ìíz8Ö€Ï‰ù1J$ac35ce20-6c78-4f06-8b8a-0984da418c9d
+java:S1854i"=Remove this useless assignment to local variable "chartType".(¾Ìíz8å³¢Šù1J$9d82722f-317d-48b9-8de0-d34d39fca4ca
 €
-java:S1854c"8Remove this useless assignment to local variable "name".(ºÔÔÎøÿÿÿÿ8Ö€Ï‰ù1J$54c34758-d8f7-459e-a955-f78f6d7d50fb
+java:S1854g"8Remove this useless assignment to local variable "name".(ºÔÔÎøÿÿÿÿ8å³¢Šù1J$97466833-567f-48fc-b1dd-812b49a3a314
 q
-java:S1481c")Remove this unused "name" local variable.(ºÔÔÎøÿÿÿÿ8Ö€Ï‰ù1J$874281f8-d12c-4e00-a525-c52bfa4c9b4e
+java:S1481g")Remove this unused "name" local variable.(ºÔÔÎøÿÿÿÿ8æ³¢Šù1J$af46aa96-fc01-4727-9476-9d0fc861570f
 p
-java:S1481e".Remove this unused "chartType" local variable.(¾Ìíz8Ö€Ï‰ù1J$c2deb866-c01c-4c97-9015-ff971eeffad5
+java:S1481i".Remove this unused "chartType" local variable.(¾Ìíz8æ³¢Šù1J$ba6615a8-715f-485c-8e70-5b0dbac59b25
 ›
-java:S2737€"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û8Ù€Ï‰ù1J$070c25bf-1026-468e-a2ca-896a971b0c2a
+java:S2737„"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û8è³¢Šù1J$c0d5a44d-9e3d-4fd0-aacb-25d9e6263230
 ’
-java:S3252‹"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(çôôQ8Ú€Ï‰ù1J$404fa317-a140-4994-94f5-521b06a7ae01
+java:S3252"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(çôôQ8è³¢Šù1J$f97e9436-bfe6-4189-80a8-905a4433260a
 ˜
-java:S3252"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(ÑßÎøÿÿÿÿ8Ú€Ï‰ù1J$a0a98543-1678-4116-8f83-84311782c2d0
+java:S3252’"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(ÑßÎøÿÿÿÿ8è³¢Šù1J$b2e53125-0d03-42d6-8685-71158af1dec7
+	java:S125¨"<This block of commented-out lines of code should be removed.(½‘Ñ³8ê³¢Šù1J$038ad415-b528-48ed-ac05-aa8dcb865937
 {
-java:S1135¬"2Complete the task associated to this TODO comment.(€€ï°şÿÿÿÿ8Û€Ï‰ù1J$e33c8b6e-3a5c-4aa1-9293-34ef48be7845
+java:S1135·"2Complete the task associated to this TODO comment.(€€ï°şÿÿÿÿ8ê³¢Šù1J$366cc11e-7173-4e4c-9215-d3b736279baa

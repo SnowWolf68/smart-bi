@@ -123,3 +123,13 @@ c
 3src/main/java/com/snwolf/bi/utils/RedisLimiter.java,4\d\4d4c06cf3a87e769eeef4dbe050987f760bb8e7b
 o
 ?src/main/java/com/snwolf/bi/exception/ChartStatusException.java,d\5\d5c788794eb769aa18f0c05f649128b0ac335049
+[
++src/test/java/com/snwolf/bi/RabbitTest.java,b\7\b78e1291225a3ab7b539b19d0e5216fa8e528944
+f
+6src/main/java/com/snwolf/bi/config/RabbitMqConfig.java,e\0\e0aafd7330668e5ab9d5a1789307f48a09d3e117
+f
+6src/main/java/com/snwolf/bi/domain/entity/Message.java,1\8\187e174b2ddaf53cb8336a65e209accbd7d9eaa4
+n
+>src/main/java/com/snwolf/bi/listener/genChartByAiListener.java,f\a\fa50bf4fbd4493f2558f4a6043ab41964d8fc912
+u
+Esrc/main/java/com/snwolf/bi/exception/ChartInfoNotExistException.java,5\4\54fd2f7196df6d101f2594de4ec6ed43149c638e

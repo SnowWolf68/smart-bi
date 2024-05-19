@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.snwolf.bi.domain.dto.*;
 import com.snwolf.bi.domain.entity.Chart;
+import com.snwolf.bi.domain.entity.Message;
 import com.snwolf.bi.exception.*;
 import com.snwolf.bi.mapper.ChartMapper;
 import com.snwolf.bi.service.IChartService;
@@ -20,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RateIntervalUnit;
 import org.redisson.api.RateType;
 import org.redisson.api.RedissonClient;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,6 +42,8 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
             4, 6, 60L, TimeUnit.SECONDS,
             new LinkedBlockingQueue<>()
     );
+
+    private final RabbitTemplate rabbitTemplate;
 
     @Override
     public Long add(ChartAddDTO chartAddDTO) {
@@ -133,17 +137,17 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
 
         rateLimit();
 
-        StringBuilder message = new StringBuilder();
-        message.append(prompt).append("\n");
-        message.append("分析目标: " + goal).append("\n");
+        StringBuilder messageStr = new StringBuilder();
+        messageStr.append(prompt).append("\n");
+        messageStr.append("分析目标: " + goal).append("\n");
         if(StrUtil.isNotBlank(chartType)){
-            message.append("要求得到的图表类型: " + chartType).append("\n");
+            messageStr.append("要求得到的图表类型: " + chartType).append("\n");
         }
         if(StrUtil.isNotBlank(name)){
-            message.append("要求得到的图表名称: " + name).append("\n");
+            messageStr.append("要求得到的图表名称: " + name).append("\n");
         }
-        message.append("数据: " + csv).append("\n");
-        log.info(message.toString());
+        messageStr.append("数据: " + csv).append("\n");
+        log.info(messageStr.toString());
         
         Chart chart = Chart.builder()
                 .name(name)
@@ -154,7 +158,14 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
                 .build();
         save(chart);
 
-        try {
+        Message message = Message.builder()
+                .chartId(chart.getId())
+                .message(messageStr.toString())
+                .build();
+
+        rabbitTemplate.convertAndSend("bi.genChartByAiExchange", "bi.genChartByAi", message);
+
+        /*try {
             GEN_CHART_EXECUTOR.submit(
                     () -> {
                         Chart oldChart = getById(chart.getId());
@@ -168,7 +179,7 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
                                 .build();
                         updateById(oldChart);
 
-                        String aiResult = ZhipuAiUtils.sendMessageAndGetResponse(message.toString());
+                        String aiResult = ZhipuAiUtils.sendMessageAndGetResponse(messageStr.toString());
                         // TODO: 对result进行处理, 得到其中的ECharts代码和结论数据, 这里先不进行过滤
                         String chartStr = aiResult;
                         String conclusionStr = aiResult;
@@ -191,7 +202,7 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
                     .execMessage(e.getMessage())
                     .build();
             updateById(failedChart);
-        }
+        }*/
 
         return chart.getId();
     }
