@@ -70,4 +70,10 @@ public class ChartController {
         String result = chartService.genConclusionByAi(multipartFile, chartGenDTO);
         return Result.success(result);
     }
+
+    @PostMapping("/gen")
+    public Result<String> genChartByAi(@RequestPart("file")MultipartFile multipartFile, ChartGenDTO chartGenDTO){
+        String result = chartService.genChartByAi(multipartFile, chartGenDTO);
+        return Result.success(result);
+    }
 }

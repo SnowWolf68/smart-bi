@@ -25,3 +25,5 @@ mybatis-plus:
 logging:
     level:
         com.snwolf: debug
+snwolf:
+    prompt: 你是一个数据分析师, 接下来我会给你我的分析目标和原始数据, 请告诉我分析结论, 并且要求给出前端Echarts VS的option配置对象js代码, 合理的将数据进行可视化. 其中不要生成注释

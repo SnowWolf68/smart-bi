@@ -15,12 +15,17 @@ import com.snwolf.bi.utils.ExcelUtils;
 import com.snwolf.bi.utils.UserHolder;
 import com.snwolf.bi.utils.ZhipuAiUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @Slf4j
 public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements IChartService {
+
+    @Value("${snwolf.prompt}")
+    private String prompt;
+
     @Override
     public Long add(ChartAddDTO chartAddDTO) {
         Chart chart = BeanUtil.copyProperties(chartAddDTO, Chart.class);
@@ -90,6 +95,44 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
         log.info(message.toString());
 
         String aiResult = ZhipuAiUtils.sendMessageAndGetResponse(message.toString());
+        return aiResult;
+    }
+
+    @Override
+    public String genChartByAi(MultipartFile multipartFile, ChartGenDTO chartGenDTO) {
+        String name = chartGenDTO.getName();
+        String goal = chartGenDTO.getGoal();
+        String chartType = chartGenDTO.getChartType();
+
+        String csv = ExcelUtils.excelToCsv(multipartFile);
+        log.info("csv: {}", csv);
+
+        StringBuilder message = new StringBuilder();
+        message.append(prompt).append("\n");
+        message.append("分析目标: " + goal).append("\n");
+        if(StrUtil.isNotBlank(chartType)){
+            message.append("要求得到的图表类型: " + chartType).append("\n");
+        }
+        if(StrUtil.isNotBlank(name)){
+            message.append("要求得到的图表名称: " + name).append("\n");
+        }
+        message.append("数据: " + csv).append("\n");
+        log.info(message.toString());
+
+        String aiResult = ZhipuAiUtils.sendMessageAndGetResponse(message.toString());
+        // TODO: 对result进行处理, 得到其中的ECharts代码和结论数据, 这里先不进行过滤
+        String chartStr = aiResult;
+        String conclusionStr = aiResult;
+        Chart chart = Chart.builder()
+                .name(name)
+                .chartType(chartType)
+                .chartData(csv)
+                .goal(goal)
+                .userId(UserHolder.getUser().getId())
+                .genResult(conclusionStr)
+                .genChart(chartStr)
+                .build();
+        save(chart);
         return aiResult;
     }
 }

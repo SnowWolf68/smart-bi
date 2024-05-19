@@ -16,4 +16,6 @@ public interface IChartService extends IService<Chart> {
     Page<Chart> pageQuery(ChartPageQueryDTO chartPageQueryDTO);
 
     String genConclusionByAi(MultipartFile multipartFile, ChartGenDTO chartGenDTO);
+
+    String genChartByAi(MultipartFile multipartFile, ChartGenDTO chartGenDTO);
 }
