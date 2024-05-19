@@ -11,10 +11,15 @@ import com.snwolf.bi.exception.ChartNotExistException;
 import com.snwolf.bi.exception.RoleNotAuthException;
 import com.snwolf.bi.mapper.ChartMapper;
 import com.snwolf.bi.service.IChartService;
+import com.snwolf.bi.utils.ExcelUtils;
 import com.snwolf.bi.utils.UserHolder;
+import com.snwolf.bi.utils.ZhipuAiUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
+@Slf4j
 public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements IChartService {
     @Override
     public Long add(ChartAddDTO chartAddDTO) {
@@ -67,5 +72,24 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
         queryWrapper.eq(chartPageQueryDTO.getUserId() != null && chartPageQueryDTO.getUserId() != 0, "user_id", chartPageQueryDTO.getUserId());
         Page<Chart> pageResult = page(page, queryWrapper);
         return pageResult;
+    }
+
+    @Override
+    public String genConclusionByAi(MultipartFile multipartFile, ChartGenDTO chartGenDTO) {
+        String name = chartGenDTO.getName();
+        String goal = chartGenDTO.getGoal();
+        String chartType = chartGenDTO.getChartType();
+
+        String csv = ExcelUtils.excelToCsv(multipartFile);
+        log.info("csv: {}", csv);
+
+        StringBuilder message = new StringBuilder();
+        message.append("你是一个数据分析师, 接下来我会给你我的分析目标和原始数据, 请告诉我分析结论").append("\n");
+        message.append("分析目标: " + goal).append("\n");
+        message.append("数据: " + csv).append("\n");
+        log.info(message.toString());
+
+        String aiResult = ZhipuAiUtils.sendMessageAndGetResponse(message.toString());
+        return aiResult;
     }
 }

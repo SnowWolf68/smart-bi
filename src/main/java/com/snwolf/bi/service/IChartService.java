@@ -2,11 +2,9 @@ package com.snwolf.bi.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.snwolf.bi.domain.dto.ChartAddDTO;
-import com.snwolf.bi.domain.dto.ChartPageQueryDTO;
-import com.snwolf.bi.domain.dto.ChartUpdateDTO;
-import com.snwolf.bi.domain.dto.IdDTO;
+import com.snwolf.bi.domain.dto.*;
 import com.snwolf.bi.domain.entity.Chart;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface IChartService extends IService<Chart> {
     Long add(ChartAddDTO chartAddDTO);
@@ -16,4 +14,6 @@ public interface IChartService extends IService<Chart> {
     void delete(IdDTO idDTO);
 
     Page<Chart> pageQuery(ChartPageQueryDTO chartPageQueryDTO);
+
+    String genConclusionByAi(MultipartFile multipartFile, ChartGenDTO chartGenDTO);
 }

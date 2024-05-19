@@ -1,6 +1,5 @@
 package com.snwolf.bi.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.snwolf.bi.annotation.CheckRole;
 import com.snwolf.bi.domain.dto.*;
@@ -12,6 +11,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/chart")
@@ -63,5 +63,11 @@ public class ChartController {
         Long userId = UserHolder.getUser().getId();
         chartPageQueryDTO.setUserId(userId);
         return pageQuery(chartPageQueryDTO);
+    }
+
+    @PostMapping("/genConclusion")
+    public Result<String> genConclusionByAi(@RequestPart("file")MultipartFile multipartFile, ChartGenDTO chartGenDTO){
+        String result = chartService.genConclusionByAi(multipartFile, chartGenDTO);
+        return Result.success(result);
     }
 }

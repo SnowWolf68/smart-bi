@@ -89,3 +89,17 @@ G
 files/tmpFiles/test.csv,c\e\ce078796f998e5a0ae8d5677fe8ed5825e3e1c2b
 \
 ,src/test/java/com/snwolf/bi/ZhipuAiTest.java,7\7\777c3784304d32b02bea1b5eef49fdc5d3fa9c1d
+o
+?src/main/java/com/snwolf/bi/controller/GeneratorController.java,4\9\4900e489481fffe4a68a4cfe07de47c1ab4f7607
+g
+7src/main/java/com/snwolf/bi/domain/dto/ChartGenDTO.java,7\6\761c72f17e1eb3922f60a37d91970409b396c106
+a
+1src/main/java/com/snwolf/bi/utils/ExcelUtils.java,8\f\8f6f7a80c9b84169c0ae600f540f387c495e67ad
+^
+.src/test/java/com/snwolf/bi/TestExcel2CSV.java,7\c\7cecf7f2daffbcab1bed111f9761104c204d4499
+i
+9src/main/java/com/snwolf/bi/service/GeneratorService.java,8\1\8123e0cbc976e87e866c584d4bdecbaa0500aae7
+r
+Bsrc/main/java/com/snwolf/bi/service/impl/GeneratorServiceImpl.java,b\1\b1d7284b8b57e8f8ac5fdee36d9eeaa1eec0c37a
+c
+3src/main/java/com/snwolf/bi/utils/ZhipuAiUtils.java,1\a\1a73abf5a48ec8bab99638d51f03218164383001
