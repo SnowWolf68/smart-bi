@@ -87,3 +87,5 @@ j
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 G
 files/tmpFiles/test.csv,c\e\ce078796f998e5a0ae8d5677fe8ed5825e3e1c2b
+\
+,src/test/java/com/snwolf/bi/ZhipuAiTest.java,7\7\777c3784304d32b02bea1b5eef49fdc5d3fa9c1d
