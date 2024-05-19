@@ -1,12 +1,13 @@
 package com.snwolf.bi.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.snwolf.bi.annotation.CheckRole;
-import com.snwolf.bi.domain.dto.ChartAddDTO;
-import com.snwolf.bi.domain.dto.ChartUpdateDTO;
-import com.snwolf.bi.domain.dto.IdDTO;
+import com.snwolf.bi.domain.dto.*;
 import com.snwolf.bi.domain.entity.Chart;
 import com.snwolf.bi.result.Result;
 import com.snwolf.bi.service.IChartService;
+import com.snwolf.bi.utils.UserHolder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -47,5 +48,20 @@ public class ChartController {
     public Result update(@RequestBody ChartUpdateDTO chartUpdateDTO){
         chartService.updateWithUserId(chartUpdateDTO);
         return Result.success();
+    }
+
+    @PostMapping("/list/page")
+    @ApiOperation("分页查询图表")
+    public Result<Page<Chart>> pageQuery(@RequestBody ChartPageQueryDTO chartPageQueryDTO){
+        Page<Chart> result = chartService.pageQuery(chartPageQueryDTO);
+        return Result.success(result);
+    }
+
+    @PostMapping("/my/list/page")
+    @ApiOperation("分页查询当前用户图表")
+    public Result<Page<Chart>> myPageQuery(@RequestBody ChartPageQueryDTO chartPageQueryDTO){
+        Long userId = UserHolder.getUser().getId();
+        chartPageQueryDTO.setUserId(userId);
+        return pageQuery(chartPageQueryDTO);
     }
 }

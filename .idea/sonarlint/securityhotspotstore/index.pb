@@ -76,3 +76,7 @@ q
 Asrc/main/java/com/snwolf/bi/exception/ChartNotExistException.java,9\2\92c833508243f82c912c3d127e1519c1a2aa3de6
 o
 ?src/main/java/com/snwolf/bi/exception/RoleNotAuthException.java,4\f\4fc086b55232afacd505f4a943a57c5e03cf4ca6
+h
+8src/main/java/com/snwolf/bi/domain/dto/PageQueryDTO.java,9\9\9937daaecd6bcc6896d83c603b3e9bb6b970ed72
+m
+=src/main/java/com/snwolf/bi/domain/dto/ChartPageQueryDTO.java,4\c\4c61b1af60e6edcfb20d2404c2895c28d9437a14

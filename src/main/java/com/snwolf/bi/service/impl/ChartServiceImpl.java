@@ -2,11 +2,10 @@ package com.snwolf.bi.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.snwolf.bi.domain.dto.ChartAddDTO;
-import com.snwolf.bi.domain.dto.ChartUpdateDTO;
-import com.snwolf.bi.domain.dto.IdDTO;
-import com.snwolf.bi.domain.dto.UserDTO;
+import com.snwolf.bi.domain.dto.*;
 import com.snwolf.bi.domain.entity.Chart;
 import com.snwolf.bi.exception.ChartNotExistException;
 import com.snwolf.bi.exception.RoleNotAuthException;
@@ -55,5 +54,18 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
             throw new RoleNotAuthException("当前用户角色无权删除图表");
         }
         removeById(chartId);
+    }
+
+    @Override
+    public Page<Chart> pageQuery(ChartPageQueryDTO chartPageQueryDTO) {
+        Page<Chart> page = new Page<>(chartPageQueryDTO.getCurrent(), chartPageQueryDTO.getPageSize());
+        QueryWrapper<Chart> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(chartPageQueryDTO.getId() != null && chartPageQueryDTO.getId() != 0, "id", chartPageQueryDTO.getId());
+        queryWrapper.like(StrUtil.isNotBlank(chartPageQueryDTO.getName()), "name", chartPageQueryDTO.getName());
+        queryWrapper.like(StrUtil.isNotBlank(chartPageQueryDTO.getGoal()), "goal", chartPageQueryDTO.getGoal());
+        queryWrapper.eq(StrUtil.isNotBlank(chartPageQueryDTO.getChartType()), "chart_type", chartPageQueryDTO.getChartType());
+        queryWrapper.eq(chartPageQueryDTO.getUserId() != null && chartPageQueryDTO.getUserId() != 0, "user_id", chartPageQueryDTO.getUserId());
+        Page<Chart> pageResult = page(page, queryWrapper);
+        return pageResult;
     }
 }
