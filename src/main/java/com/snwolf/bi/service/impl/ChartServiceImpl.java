@@ -12,19 +12,27 @@ import com.snwolf.bi.exception.*;
 import com.snwolf.bi.mapper.ChartMapper;
 import com.snwolf.bi.service.IChartService;
 import com.snwolf.bi.utils.ExcelUtils;
+import com.snwolf.bi.utils.RedisLimiter;
 import com.snwolf.bi.utils.UserHolder;
 import com.snwolf.bi.utils.ZhipuAiUtils;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RateIntervalUnit;
+import org.redisson.api.RateType;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements IChartService {
 
     @Value("${snwolf.prompt}")
     private String prompt;
+
+    private final RedissonClient redissonClient;
 
     @Override
     public Long add(ChartAddDTO chartAddDTO) {
@@ -116,6 +124,8 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
         String csv = ExcelUtils.excelToCsv(multipartFile);
         log.info("csv: {}", csv);
 
+        rateLimit();
+
         StringBuilder message = new StringBuilder();
         message.append(prompt).append("\n");
         message.append("分析目标: " + goal).append("\n");
@@ -143,6 +153,12 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
                 .build();
         save(chart);
         return aiResult;
+    }
+
+    private void rateLimit() {
+        RedisLimiter redisLimiter = new RedisLimiter(redissonClient);
+        redisLimiter.doLimit("genChartByAi:" + UserHolder.getUser().getId(),
+                RateType.OVERALL, 1L, 10L, RateIntervalUnit.SECONDS);
     }
 
     private boolean checkFile(MultipartFile multipartFile) {

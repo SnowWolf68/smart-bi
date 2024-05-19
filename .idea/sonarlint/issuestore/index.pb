@@ -109,3 +109,15 @@ l
 <src/main/java/com/snwolf/bi/exception/FileSizeException.java,c\0\c0060a542c95dad397c61abceb87f51ca28afb57
 l
 <src/main/java/com/snwolf/bi/exception/FileTypeException.java,c\2\c2d4b7d0aad2fd484e0a9e8190de7350e8d6c5ea
+c
+3src/main/java/com/snwolf/bi/config/RedisConfig.java,8\c\8c352a7d8f2b0a220a28a2bf69719db8cfb4b2f0
+j
+:src/main/java/com/snwolf/bi/manager/RedisLimitManager.java,4\3\435ce192653143166f0240f250b5880f2a5d92df
+m
+=src/main/java/com/snwolf/bi/exception/RateLimitException.java,e\7\e759ca536656b3442756e581fad61bb4b1d59f9a
+n
+>src/test/java/com/snwolf/bi/manager/RedisLimitManagerTest.java,b\5\b5717cbbd1e000106ffeb6998bfe46c525a90383
+a
+1src/test/java/com/snwolf/bi/RedisLimiterTest.java,1\6\168594cb5fd277a6d5ee3ff82f81d215c9b1f54d
+c
+3src/main/java/com/snwolf/bi/utils/RedisLimiter.java,4\d\4d4c06cf3a87e769eeef4dbe050987f760bb8e7b

@@ -18,6 +18,7 @@ spring:
                 min-idle: 1
                 time-between-eviction-runs: 10s
         password: redispass123
+        database: 1
     jackson:
         default-property-inclusion: non_null # JSON处理时忽略非空字段
 mybatis-plus:
