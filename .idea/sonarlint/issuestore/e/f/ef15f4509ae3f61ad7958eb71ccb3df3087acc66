@@ -1,33 +1,35 @@
 
-¤
-java:S1488N"bImmediately return this expression instead of assigning it to the temporary variable "pageResult".(Ğò„H8Ô¶©€ù1J$b3ea3f80-70f7-4654-a001-4e23d247c15b
-¨
-java:S1488a"`Immediately return this expression instead of assigning it to the temporary variable "aiResult".(“®’İúÿÿÿÿ8Ô¶©€ù1J$7f33516c-f3d3-4991-af06-05fe6e0bac19
-—
-java:S3252,"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(ï–åˆùÿÿÿÿ8Ş¶©€ù1J$6c5da5bb-6723-491d-9930-a6f40869e8aa
-’
-java:S3252-"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(êÆ¸Ã8ß¶©€ù1J$6b740d94-17c5-4364-8356-096a09329d88
-—
-java:S3252."OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(•ÉØ¡ÿÿÿÿÿ8ß¶©€ù1J$b6ee3508-5984-4695-a34d-f9d5a9883845
-—
-java:S3252/"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(¾ÄŸöıÿÿÿÿ8ß¶©€ù1J$a5eeb088-a9a4-4bb6-ae52-86e631e081ba
-—
-java:S3252J"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(îâÀ¸üÿÿÿÿ8á¶©€ù1J$8c6a0956-2609-4125-91dc-f1bb2a59fec8
-—
-java:S3252K"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(É¤˜Ôüÿÿÿÿ8á¶©€ù1J$43a8623d-ed20-490e-b53b-803c84d55f5c
-’
-java:S3252L"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(şì¿’8á¶©€ù1J$dc38539b-b1c1-4338-ab77-73b3e8c4d908
-
-java:S1854V"=Remove this useless assignment to local variable "chartType".(¾Ìíz8â¶©€ù1J$d924de9d-88fc-4bbf-b9c9-b69dd3cb604c
-€
-java:S1854T"8Remove this useless assignment to local variable "name".(ºÔÔÎøÿÿÿÿ8ã¶©€ù1J$cc9dcfed-42a8-43fa-adc5-df8cd6bb10fc
+~
+java:S1488N"bImmediately return this expression instead of assigning it to the temporary variable "pageResult".(Ğò„H8±©Áù1
+‚
+java:S1488a"`Immediately return this expression instead of assigning it to the temporary variable "aiResult".(“®’İúÿÿÿÿ8±©Áù1
 q
-java:S1481T")Remove this unused "name" local variable.(ºÔÔÎøÿÿÿÿ8ã¶©€ù1J$44921f83-cf36-4364-98ad-0b978708d5ff
-p
-java:S1481V".Remove this unused "chartType" local variable.(¾Ìíz8ã¶©€ù1J$da449193-612c-4f1e-b604-108ad1f97e32
-‘
-java:S3252q"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(çôôQ8å¶©€ù1J$bf40e0cf-f0c6-4eb1-a998-7b2112a15902
-—
-java:S3252t"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(ÑßÎøÿÿÿÿ8å¶©€ù1J$44a54d41-fe94-4a7c-bd43-fd716d453e08
-z
-java:S1135{"2Complete the task associated to this TODO comment.(€€ï°şÿÿÿÿ8æ¶©€ù1J$f7f11043-42bf-452d-a348-e9b45a0e8ce4
+java:S3252,"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(ï–åˆùÿÿÿÿ8»©Áù1
+l
+java:S3252-"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(êÆ¸Ã8¼©Áù1
+q
+java:S3252."OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(•ÉØ¡ÿÿÿÿÿ8¼©Áù1
+q
+java:S3252/"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(¾ÄŸöıÿÿÿÿ8¼©Áù1
+q
+java:S3252J"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(îâÀ¸üÿÿÿÿ8¾©Áù1
+q
+java:S3252K"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(É¤˜Ôüÿÿÿÿ8¾©Áù1
+l
+java:S3252L"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(şì¿’8¾©Áù1
+Y
+java:S1854V"=Remove this useless assignment to local variable "chartType".(¾Ìíz8¿©Áù1
+Z
+java:S1854T"8Remove this useless assignment to local variable "name".(ºÔÔÎøÿÿÿÿ8À©Áù1
+K
+java:S1481T")Remove this unused "name" local variable.(ºÔÔÎøÿÿÿÿ8À©Áù1
+J
+java:S1481V".Remove this unused "chartType" local variable.(¾Ìíz8Á©Áù1
+t
+java:S2737q"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û8Ã©Áù1
+k
+java:S3252z"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(çôôQ8Ã©Áù1
+q
+java:S3252}"OUse static access with "cn.hutool.core.text.CharSequenceUtil" for "isNotBlank".(ÑßÎøÿÿÿÿ8Ä©Áù1
+U
+java:S1135„"2Complete the task associated to this TODO comment.(€€ï°şÿÿÿÿ8Å©Áù1

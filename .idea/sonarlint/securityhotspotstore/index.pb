@@ -103,3 +103,9 @@ r
 Bsrc/main/java/com/snwolf/bi/service/impl/GeneratorServiceImpl.java,b\1\b1d7284b8b57e8f8ac5fdee36d9eeaa1eec0c37a
 c
 3src/main/java/com/snwolf/bi/utils/ZhipuAiUtils.java,1\a\1a73abf5a48ec8bab99638d51f03218164383001
+m
+=src/main/java/com/snwolf/bi/exception/FileCheckException.java,d\9\d93258d2d4696d8ff548c36054cf99891fd6de77
+l
+<src/main/java/com/snwolf/bi/exception/FileSizeException.java,c\0\c0060a542c95dad397c61abceb87f51ca28afb57
+l
+<src/main/java/com/snwolf/bi/exception/FileTypeException.java,c\2\c2d4b7d0aad2fd484e0a9e8190de7350e8d6c5ea

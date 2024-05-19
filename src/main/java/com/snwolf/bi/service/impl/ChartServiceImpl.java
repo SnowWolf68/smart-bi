@@ -1,14 +1,14 @@
 package com.snwolf.bi.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.snwolf.bi.domain.dto.*;
 import com.snwolf.bi.domain.entity.Chart;
-import com.snwolf.bi.exception.ChartNotExistException;
-import com.snwolf.bi.exception.RoleNotAuthException;
+import com.snwolf.bi.exception.*;
 import com.snwolf.bi.mapper.ChartMapper;
 import com.snwolf.bi.service.IChartService;
 import com.snwolf.bi.utils.ExcelUtils;
@@ -104,6 +104,15 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
         String goal = chartGenDTO.getGoal();
         String chartType = chartGenDTO.getChartType();
 
+        try {
+            boolean checkResult = checkFile(multipartFile);
+            if(!checkResult){
+                throw new FileCheckException("文件校验不通过");
+            }
+        } catch (BaseException e){
+            throw e;
+        }
+
         String csv = ExcelUtils.excelToCsv(multipartFile);
         log.info("csv: {}", csv);
 
@@ -134,5 +143,18 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
                 .build();
         save(chart);
         return aiResult;
+    }
+
+    private boolean checkFile(MultipartFile multipartFile) {
+        long size = multipartFile.getSize();
+        final long ONE_MB = 1024 * 1024L;
+        if(size > ONE_MB){
+            throw new FileSizeException("文件过大, 要求上传的文件不超过1MB");
+        }
+        String suffix = FileUtil.getSuffix(multipartFile.getOriginalFilename());
+        if(!suffix.equals("xlsx") && !suffix.equals("xls")){
+            throw new FileTypeException("文件类型不支持, 要求上传的文件类型为xlsx或xls");
+        }
+        return true;
     }
 }
