@@ -17,5 +17,5 @@ public interface IChartService extends IService<Chart> {
 
     String genConclusionByAi(MultipartFile multipartFile, ChartGenDTO chartGenDTO);
 
-    String genChartByAi(MultipartFile multipartFile, ChartGenDTO chartGenDTO);
+    Long genChartByAi(MultipartFile multipartFile, ChartGenDTO chartGenDTO);
 }

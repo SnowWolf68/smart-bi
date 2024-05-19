@@ -121,3 +121,5 @@ a
 1src/test/java/com/snwolf/bi/RedisLimiterTest.java,1\6\168594cb5fd277a6d5ee3ff82f81d215c9b1f54d
 c
 3src/main/java/com/snwolf/bi/utils/RedisLimiter.java,4\d\4d4c06cf3a87e769eeef4dbe050987f760bb8e7b
+o
+?src/main/java/com/snwolf/bi/exception/ChartStatusException.java,d\5\d5c788794eb769aa18f0c05f649128b0ac335049

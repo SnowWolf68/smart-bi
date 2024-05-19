@@ -24,6 +24,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.concurrent.*;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -33,6 +35,11 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
     private String prompt;
 
     private final RedissonClient redissonClient;
+
+    private final ExecutorService GEN_CHART_EXECUTOR = new ThreadPoolExecutor(
+            4, 6, 60L, TimeUnit.SECONDS,
+            new LinkedBlockingQueue<>()
+    );
 
     @Override
     public Long add(ChartAddDTO chartAddDTO) {
@@ -107,7 +114,7 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
     }
 
     @Override
-    public String genChartByAi(MultipartFile multipartFile, ChartGenDTO chartGenDTO) {
+    public Long genChartByAi(MultipartFile multipartFile, ChartGenDTO chartGenDTO) {
         String name = chartGenDTO.getName();
         String goal = chartGenDTO.getGoal();
         String chartType = chartGenDTO.getChartType();
@@ -137,28 +144,63 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
         }
         message.append("数据: " + csv).append("\n");
         log.info(message.toString());
-
-        String aiResult = ZhipuAiUtils.sendMessageAndGetResponse(message.toString());
-        // TODO: 对result进行处理, 得到其中的ECharts代码和结论数据, 这里先不进行过滤
-        String chartStr = aiResult;
-        String conclusionStr = aiResult;
+        
         Chart chart = Chart.builder()
                 .name(name)
                 .chartType(chartType)
                 .chartData(csv)
                 .goal(goal)
                 .userId(UserHolder.getUser().getId())
-                .genResult(conclusionStr)
-                .genChart(chartStr)
                 .build();
         save(chart);
-        return aiResult;
+
+        try {
+            GEN_CHART_EXECUTOR.submit(
+                    () -> {
+                        Chart oldChart = getById(chart.getId());
+                        if(!oldChart.getStatus().equals("wait")){
+                            throw new ChartStatusException("当前图表状态不可生成");
+                        }
+
+                        oldChart = Chart.builder()
+                                .id(chart.getId())
+                                .status("running")
+                                .build();
+                        updateById(oldChart);
+
+                        String aiResult = ZhipuAiUtils.sendMessageAndGetResponse(message.toString());
+                        // TODO: 对result进行处理, 得到其中的ECharts代码和结论数据, 这里先不进行过滤
+                        String chartStr = aiResult;
+                        String conclusionStr = aiResult;
+
+                        oldChart = Chart.builder()
+                                .id(chart.getId())
+                                .status("succeed")
+                                .genChart(chartStr)
+                                .genResult(conclusionStr)
+                                .build();
+
+                        updateById(oldChart);
+                    }
+            );
+        } catch (Exception e) {
+            log.info("AI生成图表任务失败: {}", e.getMessage());
+            Chart failedChart = Chart.builder()
+                    .id(chart.getId())
+                    .status("failed")
+                    .execMessage(e.getMessage())
+                    .build();
+            updateById(failedChart);
+        }
+
+        return chart.getId();
     }
 
     private void rateLimit() {
         RedisLimiter redisLimiter = new RedisLimiter(redissonClient);
-        redisLimiter.doLimit("genChartByAi:" + UserHolder.getUser().getId(),
-                RateType.OVERALL, 1L, 10L, RateIntervalUnit.SECONDS);
+        // 注意这里key不能使用:来进行分级, 否则限流会出错
+        redisLimiter.doLimit("genChartByAi_" + UserHolder.getUser().getId(),
+                RateType.OVERALL, 5L, 2L, RateIntervalUnit.SECONDS);
     }
 
     private boolean checkFile(MultipartFile multipartFile) {

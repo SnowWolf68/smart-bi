@@ -72,8 +72,8 @@ public class ChartController {
     }
 
     @PostMapping("/gen")
-    public Result<String> genChartByAi(@RequestPart("file")MultipartFile multipartFile, ChartGenDTO chartGenDTO){
-        String result = chartService.genChartByAi(multipartFile, chartGenDTO);
-        return Result.success(result);
+    public Result<Long> genChartByAi(@RequestPart("file")MultipartFile multipartFile, ChartGenDTO chartGenDTO){
+        Long chartId = chartService.genChartByAi(multipartFile, chartGenDTO);
+        return Result.success(chartId);
     }
 }
