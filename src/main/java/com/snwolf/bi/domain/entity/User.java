@@ -47,6 +47,16 @@ public class User {
     private String userRole;
 
     /**
+     * 用户总调用次数
+     */
+    private Integer totalCnt;
+
+    /**
+     * 用户剩余调用次数
+     */
+    private Integer leftCnt;
+
+    /**
      * 创建时间
      */
     private LocalDateTime createTime;

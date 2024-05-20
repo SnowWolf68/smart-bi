@@ -5,6 +5,8 @@ import com.snwolf.bi.domain.entity.Message;
 import com.snwolf.bi.exception.ChartInfoNotExistException;
 import com.snwolf.bi.exception.ChartStatusException;
 import com.snwolf.bi.service.IChartService;
+import com.snwolf.bi.service.IUserService;
+import com.snwolf.bi.utils.UserHolder;
 import com.snwolf.bi.utils.ZhipuAiUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +23,8 @@ public class genChartByAiListener {
 
     private final IChartService chartService;
 
+    private final IUserService userService;
+
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(name = "bi.genChartByAiQueue", durable = "true"),
             exchange = @Exchange(name = "bi.genChartByAiExchange", type = "direct"),
@@ -29,6 +33,10 @@ public class genChartByAiListener {
     public void listen(Message message){
         try {
             Long chartId = message.getChartId();
+
+            Long userId = UserHolder.getUser().getId();
+            log.info("当前用户id：" + userId);
+
             String messageStr = message.getMessage();
             log.info("接收到消息：" + chartId + " " + messageStr);
 
@@ -59,6 +67,8 @@ public class genChartByAiListener {
                     .build();
 
             chartService.updateById(chart);
+
+            userService.deduckCnt(userId);
         } catch (ChartStatusException e) {
             log.info("AI生成图表任务失败: {}", e.getMessage());
             Chart failedChart = Chart.builder()

@@ -29,6 +29,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     private final StringRedisTemplate stringRedisTemplate;
 
+    private final UserMapper userMapper;
+
     @Override
     public void register(UserRegisterDTO userRegisterDTO) throws CheckPasswordException {
         String userPassword = userRegisterDTO.getUserPassword();
@@ -67,5 +69,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         stringRedisTemplate.opsForHash().putAll(RedisConstants.USER_LOGIN_KEY + token, userMap);
         stringRedisTemplate.expire(RedisConstants.USER_LOGIN_KEY + token, RedisConstants.USER_LOGIN_TTL, TimeUnit.MINUTES);
         return token;
+    }
+
+    @Override
+    public void deduckCnt(Long userId) {
+        userMapper.deduckCnt(userId);
     }
 }

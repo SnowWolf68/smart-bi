@@ -10,4 +10,6 @@ public interface IUserService extends IService<User> {
     void register(UserRegisterDTO userRegisterDTO) throws CheckPasswordException;
 
     String login(UserLoginDTO userLoginDTO);
+
+    void deduckCnt(Long userId);
 }
