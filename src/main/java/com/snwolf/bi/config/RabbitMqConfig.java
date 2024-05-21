@@ -12,6 +12,7 @@ import org.springframework.amqp.rabbit.retry.MessageRecoverer;
 import org.springframework.amqp.rabbit.retry.RepublishMessageRecoverer;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
+import org.springframework.boot.autoconfigure.amqp.SimpleRabbitListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.retry.policy.SimpleRetryPolicy;
@@ -51,8 +52,8 @@ public class RabbitMqConfig {
         log.info("rabbitListenerContainerFactory: {}", rabbitListenerContainerFactory);
     }
 
-//    @Bean
-    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(ConnectionFactory connectionFactory) {
+    @Bean
+    public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory(SimpleRabbitListenerContainerFactoryConfigurer configurer, ConnectionFactory connectionFactory) {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
 
@@ -60,12 +61,14 @@ public class RabbitMqConfig {
         factory.setAfterReceivePostProcessors(afterReceivePostProcessor);
         factory.setMessageConverter(jackson2JsonMessageConverter);
 
-        RetryTemplate retryTemplate = new RetryTemplate();
+        /*RetryTemplate retryTemplate = new RetryTemplate();
         SimpleRetryPolicy simpleRetryPolicy = new SimpleRetryPolicy(2);
 
         retryTemplate.setRetryPolicy(simpleRetryPolicy);
 
-        factory.setRetryTemplate(retryTemplate);
+        factory.setRetryTemplate(retryTemplate);*/
+
+        configurer.configure(factory, connectionFactory);
 
         return factory;
     }
