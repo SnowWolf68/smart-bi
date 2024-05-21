@@ -1,6 +1,10 @@
 
-”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(‚Ô¹áüÿÿÿÿ8¸Öó«ù1J$1e22a279-bf04-4162-a5c1-80b65f5780c8
-•
-java:S18589"M"messageStr" is already a string, there's no need to call "toString()" on it.(ð…û•ýÿÿÿÿ8¿Öó«ù1J$bf0a8ba4-e145-4c4e-a233-42f130d1901c
+ˆ	java:S112%"FDefine and throw a dedicated exception instead of using a generic one.(Ç¼„¦8ÆÂ×Üù1J$1f33a27e-b356-4375-bcb6-4f17b7663664
+”	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(‚Ô¹áüÿÿÿÿ8¸Öó«ù1J$488b0fe6-0277-4b9f-bd84-e397bb4c9ad3
+~
+java:S1854#";Remove this useless assignment to local variable "chartId".(Ž¸µŸ8ÒÂ×Üù1J$253ba73f-86a0-49bd-81e9-60d821be278d
+o
+java:S1481#",Remove this unused "chartId" local variable.(Ž¸µŸ8öâ×Üù1J$be1984d0-caa5-4ab9-a981-4a878c98fae1
+ƒ	java:S125'"<This block of commented-out lines of code should be removed.(Î˜ßâøÿÿÿÿ8÷â×Üù1J$c4ccaadd-7b4c-4eac-915e-05fe49998875
 z
-java:S1135:"2Complete the task associated to this TODO comment.(€€ï°þÿÿÿÿ8ÀÖó«ù1J$4647b98d-6b8f-49cd-a877-dae0b5740ef2
+java:S1135>"2Complete the task associated to this TODO comment.(€€ï°þÿÿÿÿ8ÀÖó«ù1J$6d39b3a4-599d-40ad-8c16-12d801d6fa6b

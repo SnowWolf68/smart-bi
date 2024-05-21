@@ -34,6 +34,10 @@ public class genChartByAiListener {
         try {
             Long chartId = message.getChartId();
 
+            throw new RuntimeException("故意的");
+
+            /*UserHolder.removeUser();
+
             Long userId = UserHolder.getUser().getId();
             log.info("当前用户id：" + userId);
 
@@ -68,7 +72,7 @@ public class genChartByAiListener {
 
             chartService.updateById(chart);
 
-            userService.deduckCnt(userId);
+            userService.deduckCnt(userId);*/
         } catch (ChartStatusException e) {
             log.info("AI生成图表任务失败: {}", e.getMessage());
             Chart failedChart = Chart.builder()
