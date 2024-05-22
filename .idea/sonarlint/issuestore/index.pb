@@ -121,3 +121,7 @@ v
 Fsrc/main/java/com/snwolf/bi/processors/BeforePublishPostProcessor.java,b\d\bd5913dcf38531e05fd2229f6fb218ecdbd02bae
 u
 Esrc/main/java/com/snwolf/bi/processors/AfterReceivePostProcessor.java,2\4\2426b9b34ffc7f6007e307cf8eb1a536fe39d2ee
+r
+Bsrc/main/java/com/snwolf/bi/config/RabbitMqErrorMessageConfig.java,f\e\fef0573e8cb5cb86aaefaa2de787fb67ffc15917
+l
+<src/main/java/com/snwolf/bi/constants/RabbitMqConstants.java,4\d\4dea8f558e09a80dfad043f1faabb5b28aa7d86f
