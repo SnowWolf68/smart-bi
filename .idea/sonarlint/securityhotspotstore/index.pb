@@ -125,3 +125,9 @@ r
 Bsrc/main/java/com/snwolf/bi/config/RabbitMqErrorMessageConfig.java,f\e\fef0573e8cb5cb86aaefaa2de787fb67ffc15917
 l
 <src/main/java/com/snwolf/bi/constants/RabbitMqConstants.java,4\d\4dea8f558e09a80dfad043f1faabb5b28aa7d86f
+a
+1src/test/java/com/snwolf/bi/DelayMessageTest.java,4\0\408f52e2e4d2e187c045d79fee5bf611d99c7f1b
+n
+>src/main/java/com/snwolf/bi/listener/GenChartByAiListener.java,6\a\6a0d55b6ef3d21bf652126785cd9b63bd9360952
+u
+Esrc/main/java/com/snwolf/bi/listener/GenChartByAiTimeoutListener.java,5\c\5c6d93803ec75c073a133f929a7b05c08989e097

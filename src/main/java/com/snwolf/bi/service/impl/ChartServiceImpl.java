@@ -6,6 +6,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.snwolf.bi.constants.RabbitMqConstants;
 import com.snwolf.bi.domain.dto.*;
 import com.snwolf.bi.domain.entity.Chart;
 import com.snwolf.bi.domain.entity.Message;
@@ -21,6 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RateIntervalUnit;
 import org.redisson.api.RateType;
 import org.redisson.api.RedissonClient;
+import org.springframework.amqp.AmqpException;
+import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -164,6 +167,14 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
                 .build();
 
         rabbitTemplate.convertAndSend("bi.genChartByAiExchange", "bi.genChartByAi", message);
+
+        rabbitTemplate.convertAndSend(RabbitMqConstants.GEN_CHART_BY_AI_TIMEOUT_EXCHANGE, RabbitMqConstants.GEN_CHART_BY_AI_TIMEOUT_KEY, message,
+                message1 -> {
+                    message1.getMessageProperties().setDelay(10000);
+                    return message1;
+                });
+
+        log.info("发送任务给消息队列成功");
 
         /*try {
             GEN_CHART_EXECUTOR.submit(

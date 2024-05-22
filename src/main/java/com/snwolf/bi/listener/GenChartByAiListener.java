@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 @RequiredArgsConstructor
-public class genChartByAiListener {
+public class GenChartByAiListener {
 
     private final IChartService chartService;
 
@@ -32,6 +32,8 @@ public class genChartByAiListener {
     ))
     public void listen(Message message){
         try {
+            log.info("接收到生成任务, 开始执行");
+
             Long chartId = message.getChartId();
 
             Long userId = UserHolder.getUser().getId();
@@ -44,7 +46,7 @@ public class genChartByAiListener {
             if(chart == null){
                 throw new ChartInfoNotExistException("当前要生成的图表信息不存在");
             }
-            if(!chart.getStatus().equals("wait")){
+            if(chart.getStatus().equals("running") || chart.getStatus().equals("succeed")){
                 throw new ChartStatusException("当前图表状态不可生成");
             }
 
@@ -62,6 +64,7 @@ public class genChartByAiListener {
             chart = Chart.builder()
                     .id(chartId)
                     .status("succeed")
+                    .execMessage("执行成功")
                     .genChart(chartStr)
                     .genResult(conclusionStr)
                     .build();

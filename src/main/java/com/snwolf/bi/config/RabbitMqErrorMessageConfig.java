@@ -21,21 +21,21 @@ public class RabbitMqErrorMessageConfig {
 
     @Bean
     public DirectExchange errorMessageExchange() {
-        return new DirectExchange(RabbitMqConstants.GEN_CHAT_BY_AI_ERROR_EXCHANGE);
+        return new DirectExchange(RabbitMqConstants.GEN_CHART_BY_AI_ERROR_EXCHANGE);
     }
 
     @Bean
     public Queue errorMessageQueue() {
-        return new Queue(RabbitMqConstants.GEN_CHAT_BY_AI_ERROR_QUEUE);
+        return new Queue(RabbitMqConstants.GEN_CHART_BY_AI_ERROR_QUEUE);
     }
 
     @Bean
     public Binding errorMessageBinding(Queue errorMessageQueue, DirectExchange errorMessageExchange) {
-        return BindingBuilder.bind(errorMessageQueue).to(errorMessageExchange).with(RabbitMqConstants.GEN_CHAT_BY_AI_ERROR_KEY);
+        return BindingBuilder.bind(errorMessageQueue).to(errorMessageExchange).with(RabbitMqConstants.GEN_CHART_BY_AI_ERROR_KEY);
     }
 
     @Bean
     public MessageRecoverer messageRecoverer(){
-        return new RepublishMessageRecoverer(rabbitTemplate, RabbitMqConstants.GEN_CHAT_BY_AI_ERROR_EXCHANGE, RabbitMqConstants.GEN_CHAT_BY_AI_ERROR_KEY);
+        return new RepublishMessageRecoverer(rabbitTemplate, RabbitMqConstants.GEN_CHART_BY_AI_ERROR_EXCHANGE, RabbitMqConstants.GEN_CHART_BY_AI_ERROR_KEY);
     }
 }
