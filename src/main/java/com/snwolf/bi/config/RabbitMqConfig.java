@@ -1,6 +1,5 @@
 package com.snwolf.bi.config;
 
-import com.snwolf.bi.constants.RabbitMqConstants;
 import com.snwolf.bi.processors.AfterReceivePostProcessor;
 import com.snwolf.bi.processors.BeforePublishPostProcessor;
 import lombok.extern.slf4j.Slf4j;
@@ -8,15 +7,11 @@ import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFacto
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.RabbitListenerContainerFactory;
-import org.springframework.amqp.rabbit.retry.MessageRecoverer;
-import org.springframework.amqp.rabbit.retry.RepublishMessageRecoverer;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.boot.autoconfigure.amqp.SimpleRabbitListenerContainerFactoryConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.retry.policy.SimpleRetryPolicy;
-import org.springframework.retry.support.RetryTemplate;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -49,7 +44,6 @@ public class RabbitMqConfig {
     void setProcessors(){
         rabbitTemplate.setBeforePublishPostProcessors(beforePublishPostProcessor);
 //        rabbitTemplate.setAfterReceivePostProcessors(afterReceivePostProcessor);
-        log.info("rabbitListenerContainerFactory: {}", rabbitListenerContainerFactory);
     }
 
     @Bean
@@ -61,13 +55,8 @@ public class RabbitMqConfig {
         factory.setAfterReceivePostProcessors(afterReceivePostProcessor);
         factory.setMessageConverter(jackson2JsonMessageConverter);
 
-        /*RetryTemplate retryTemplate = new RetryTemplate();
-        SimpleRetryPolicy simpleRetryPolicy = new SimpleRetryPolicy(2);
-
-        retryTemplate.setRetryPolicy(simpleRetryPolicy);
-
-        factory.setRetryTemplate(retryTemplate);*/
-
+        // 将配置文件中的配置项配置到我们刚刚自己创建的factory中
+        // 如果不进行配置, 那么在配置文件中配置的东西就不会生效, 比如配置的重试策略等等
         configurer.configure(factory, connectionFactory);
 
         return factory;
